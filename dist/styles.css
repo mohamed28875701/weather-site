@@ -1,8 +1,132 @@
 *{
     margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    font-size: 16px;
+    --font-color:aliceblue;
+    --font-family:"Oswald",sans-serif;
+}
+#content{
+    height: 100svh;
+}
+.bg{
+    background: url("https://images.unsplash.com/photo-1673864743085-aaeb634720bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1071&q=80");
+    background-size: cover;
+    height: 100%;
+}
+#header{
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    color: var(--font-color);
+    font-family: var(--font-family);
+}
+#name{
+    letter-spacing: .2rem;
+}
+#switch{
+    width: 8rem;
+    font-size: 1.5rem;
+    border-radius: .7rem;
+    color: var(--font-color);
+    border: 1px solid;
+    border-color: var(--font-color);
+    background-color: transparent;
+    transition: all 200ms;
+    cursor: pointer;
+}
+#switch:hover{
+    background-color: var(--font-color);    
+    color: #333;
+}
+#input{
+    display: flex;
+    justify-content: center;
+    padding-block: 1rem;
+    margin-top: 6rem;
+}
+form{
+    display: flex;
+    gap: 1rem;
+}
+#seach{
+    font-size: 2rem;   
+    font-family: var(--font-family);
+    appearance: none;
+    background-color: transparent;
+    outline: none;
+    color: aliceblue;
+    border:2px solid var(--font-color);
+    border-radius: .5rem;
+}
+#submit{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+#main{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    
+}
+.name{
+    width: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    color: var(--font-color);
+    font-size: 1.2rem;
+    border: 1px solid var(--font-color);
+    border-radius: 1rem;
+    
+}
+.card{
+    display: flex;
+    gap: 1rem;
+    width: 13vw;
+    aspect-ratio: 1/1;
+    color: var(--font-color);
+    font-size: 1.2rem;
+    border: 1px solid var(--font-color);
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding-inline: .3rem;
+}
+#Layer_1{
+    
+    width: 3rem;
+    height: 3rem;
+}
+@media only screen and (max-width:700px) {
+    #main{
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding-block: 1rem;
+    }
+    .card{
+        width: 50vw;
+    }
+    .name{
+        width: 50vw;
+    }
 
 }
-body{
-    background: url("https://images.unsplash.com/photo-1514900389014-caae55f63513?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80");
-    background-size: cover;
+@media only screen and (max-width:400px){
+   #seach{
+        font-size: 1rem;
+   } 
+   #submit{
+    width: 2rem;
+   }
+   #switch{
+    width: 5rem;
+   }
 }
