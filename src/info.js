@@ -1,12 +1,15 @@
 
 export default class info{
     static async getweather(city){
-        const fetchResponse=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=f9c121c0d80f56fd2c9005d71e216fa8`);
-        if(!fetchResponse.ok)
-            return fetchResponse.status;
-        const weather=await fetchResponse.json();
         
+        const fetchResponse=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=f9c121c0d80f56fd2c9005d71e216fa8`);
+        const weather=await fetchResponse.json();
+        if(weather.cod==="404"){
+            return 404;
+        }
         return weather;
+        
+        
         
     }
     static async getTmp(city){
