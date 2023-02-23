@@ -37,6 +37,7 @@ export default class inter{
         form.appendChild(search)
         form.appendChild(button);
         wrapper.appendChild(form);
+        button.addEventListener("click",inter.submitCity);
         return wrapper;
     }
     static cityName(){
@@ -133,12 +134,14 @@ export default class inter{
         wrapper.id="main";
         wrapper.classList.add("name");
         const p =document.createElement("p");
+        p.id="overall";
         info.getMainWeather("paris").then((inf)=>{
             p.textContent=`Overall: ${inf}`;
         })
         wrapper.appendChild(p);
         return wrapper;
     }
+    //update UI
     static updateTemp(city){
         info.getTmp(city).then((inf)=>{
             console.log(Math.round(inf-273.15));
@@ -176,5 +179,23 @@ export default class inter{
         info.getName(city).then((inf)=>{
             document.getElementById("city-name").textContent=`${inf.name},${inf.country}`;    
         });       
+    }
+    static updateCityMain(city){
+        info.getMainWeather(city).then((inf)=>{
+            document.getElementById("overall").textContent=`Overall: ${inf}`;
+        })
+    }
+    //events
+    static submitCity(e){
+        e.preventDefault();
+        const city=document.getElementById("input");
+        const response = info.getweather(city.value);
+        if(response===404)
+            return ;
+        inter.updateTemp(city)
+        inter.updateName(city);
+        inter.updateFeelsLike(city);
+        inter.updateWind(city);
+        inter.updateCityMain(city);
     }
 }
