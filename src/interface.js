@@ -12,6 +12,7 @@ export default class inter{
         wrapper.appendChild(inter.cityTmp())
         wrapper.appendChild(inter.cityFeelsLike())
         wrapper.appendChild(inter.cityWind());
+        content.appendChild(inter.error());
         content.appendChild(wrapper);
         }
     //creation of the elements
@@ -23,6 +24,7 @@ export default class inter{
         head.textContent="Weather"
         const button =document.createElement("button");
         button.id="switch";
+        button.addEventListener("click",inter.switchUnits)
         button.textContent="C";
         wrapper.appendChild(head)
         wrapper.appendChild(button);
@@ -134,6 +136,7 @@ export default class inter{
         wrapper.appendChild(referTo);
         wrapper.appendChild(wind);
         card.appendChild(wrapper);
+        
         return card;
     }
     static cityMain(){
@@ -156,8 +159,10 @@ export default class inter{
         button.textContent="X";
         const message=document.createElement("p");
         message.textContent="There is no such city";
+        button.addEventListener("click",inter.closeError)
         wrapper.appendChild(button);
         wrapper.appendChild(message);
+        wrapper.classList.add("closed");
         return wrapper;
     }
     //update UI
@@ -209,11 +214,16 @@ export default class inter{
     static async submitCity(e){
         e.preventDefault();
         const city=document.getElementById("seach");
-        const response = await info.getweather(city.value);
-        
-        if(response===404){
-            console.log("fuck");
+        if(city.value===""){
             return;
+        }
+        
+            const response = await info.getweather(city.value);
+        if(response===404){
+            
+            document.getElementById("error").classList.toggle("opened");
+            city.value="";
+            return ;
         }
             
         inter.updateTemp(city.value)
@@ -221,5 +231,20 @@ export default class inter{
         inter.updateFeelsLike(city.value);
         inter.updateWind(city.value);
         inter.updateCityMain(city.value);
+    }
+    static closeError(){
+        document.getElementById("error").classList.toggle("opened");
+    }
+    static async switchUnits(e){
+        if(document.getElementById("switch").textContent==="F"){
+            document.getElementById("switch").textContent="C"; 
+        }
+        else{
+            document.getElementById("switch").textContent="F";
+        }
+        const city=document.querySelector("#city-name div").textContent;
+        inter.updateFeelsLike(city.split(",")[0]);
+        inter.updateTemp(city.split(",")[0]);
+        inter.updateWind(city.split(",")[0]);
     }
 }
