@@ -9,6 +9,7 @@
 }
 #content{
     height: 100svh;
+    overflow-y: hidden;
 }
 .bg{
     background: url("https://images.unsplash.com/photo-1673864743085-aaeb634720bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1071&q=80");
@@ -104,6 +105,41 @@ form{
     width: 3rem;
     height: 3rem;
 }
+#error{
+    background-color: crimson;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    visibility: hidden;
+    transform:translate(-50%);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 4rem;
+    width: min(250px,80vw);
+    border-radius: 1rem;
+    
+    color: var(--font-color);
+    font-family: var(--font-family);
+}
+#close{
+    background-color: inherit;
+    color: var(--font-color);
+    border: none;
+    font-size: inherit;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    border-radius:1rem ;
+    cursor: pointer;
+}
+
+#error.opened{
+    transition: transform 300ms cubic-bezier(.42,0,.58,1);
+    visibility: visible;
+    transform: translate(-50%,-200%) scale(1);
+}
+/*media queries*/
 @media only screen and (max-width:700px) {
     #main{
         flex-direction: column;
