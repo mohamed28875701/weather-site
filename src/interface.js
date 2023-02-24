@@ -148,6 +148,18 @@ export default class inter{
         wrapper.appendChild(p);
         return wrapper;
     }
+    static error(){
+        const wrapper=document.createElement("div");
+        wrapper.id="error";
+        const button =document.createElement("button");
+        button.id="close";
+        button.textContent="X";
+        const message=document.createElement("p");
+        message.textContent="There is no such city";
+        wrapper.appendChild(button);
+        wrapper.appendChild(message);
+        return wrapper;
+    }
     //update UI
     static updateTemp(city){
         info.getTmp(city).then((inf)=>{
